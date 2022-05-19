@@ -1,0 +1,56 @@
+#include <vector> 
+#include <iostream>
+
+using namespace std;
+
+class Matrix {
+public:
+	vector <vector <int>> matrix;
+	int n, m;
+	Matrix(vector<vector<int>> vec) {
+		this->matrix = vec;
+		n = vec.size();
+		m = vec[0].size();
+	}
+	void cout_Matrix() {
+		for (int i = 0; i < matrix.size(); i++) {
+			for (int j = 0; j < matrix[i].size(); j++) {
+				cout << matrix[i][j];
+			}
+			cout << '\n';
+		}
+	}
+
+};
+
+Matrix sum_of_two(Matrix A, Matrix B) {
+	vector<vector<int>>vec(A.n, vector<int>(A.m, 0));
+	for (int i = 0; i < A.n; i++) {
+		for (int j = 0; j < A.m; j++) {
+			vec[i][j] = A.matrix[i][j] + B.matrix[i][j];
+		}	
+	}
+	Matrix C(vec);
+	return C;
+}
+
+int main() {
+	vector<vector<int>> vec1(3, vector <int>(3));
+	vector<vector<int>> vec2(3, vector <int>(3));
+	
+	for (int i = 0; i < vec1.size(); i++) {
+		for (int j = 0; j < vec1[i].size(); j++) {
+			cin >> vec1[i][j];
+		}
+	}
+	for (int i = 0; i < vec1.size(); i++) {
+		for (int j = 0; j < vec1[i].size(); j++) {
+			cin >> vec2[i][j];
+		}
+	}
+	Matrix P1(vec1);
+	Matrix P2(vec2);
+
+	sum_of_two(P1, P2).cout_Matrix();
+	return 0;
+}
